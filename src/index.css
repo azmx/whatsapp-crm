@@ -1,68 +1,74 @@
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
 
-/* Wallpaper WhatsApp */
+/* Wallpaper WhatsApp dengan pattern */
 .chat-wallpaper {
-  background-color: #88a4a1;
+  background: linear-gradient(to bottom, #e5ddd5 0%, #d9cfc2 100%);
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v100H0z' fill='%23e5ddd5'/%3E%3Cpath d='M50 0L0 50h100z' fill='%23d9cfc2' opacity='.1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
 }
 
-/* BUBBLE IN (pesan masuk) */
-.bubble-in {
+/* Bubble IN (pesan masuk) - New Design */
+.bubble-in-new {
   background: white;
   color: #111;
-  padding: 10px 14px;
-  max-width: 75%;
+  padding: 10px 16px;
   border-radius: 18px;
   border-top-left-radius: 4px;
-  position: relative;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: all 0.2s ease;
 }
 
-/* Ekor bubble IN */
-.bubble-in::after {
-  content: "";
-  position: absolute;
-  left: -8px;
-  bottom: 0px;
-  width: 12px;
-  height: 12px;
-  background: white;
-  clip-path: polygon(100% 0, 0 100%, 100% 100%);
+.bubble-in-new:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
 }
 
-/* BUBBLE OUT (pesan keluar) */
-.bubble-out {
-  background: #dcf8c6; /* warna WA asli */
-  color: #111;
-  padding: 10px 14px;
-  max-width: 75%;
+/* Bubble OUT (pesan keluar) - New Design */
+.bubble-out-new {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 10px 16px;
   border-radius: 18px;
   border-top-right-radius: 4px;
-  position: relative;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  transition: all 0.2s ease;
 }
 
-/* Ekor bubble OUT */
-.bubble-out::after {
-  content: "";
-  position: absolute;
-  right: -8px;
-  bottom: 0px;
-  width: 12px;
-  height: 12px;
-  background: #dcf8c6;
-  clip-path: polygon(0 0, 100% 100%, 0 100%);
+.bubble-out-new:hover {
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
 }
 
-.bubble-in,
-.bubble-out {
-  word-break: break-word;
-  overflow-wrap: break-word;
-  max-width: 80%; /* biar aman */
+/* Animation untuk pesan baru */
+.message-animation {
+  animation: slideIn 0.3s ease-out;
 }
 
-/* Header WhatsApp */
-.header-wa {
-  background: #128c7e;
-  color: white;
-  border-color: #0f7a6d;
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar custom */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
