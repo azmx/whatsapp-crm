@@ -63,7 +63,12 @@ export function useMessages() {
   const fetchFromVercel = async () => {
     try {
       const response = await fetch(
-        "https://whatsapp-webhook-vercel-two.vercel.app/api/messages"
+        "https://whatsapp-webhook-vercel-two.vercel.app/api/messages",
+        {
+          headers: {
+            "x-api-key": import.meta.env.VITE_API_KEY_SECRET,
+          },
+        }
       );
       const data = await response.json();
 
@@ -87,7 +92,7 @@ export function useMessages() {
       console.log("Error fetching from Vercel:", error);
     }
   };
-
+  
   useEffect(() => {
     loadMessages();
 
