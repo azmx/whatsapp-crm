@@ -92,7 +92,7 @@ export function useMessages() {
       console.log("Error fetching from Vercel:", error);
     }
   };
-  
+
   useEffect(() => {
     loadMessages();
 
