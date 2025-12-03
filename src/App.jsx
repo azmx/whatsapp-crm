@@ -79,14 +79,7 @@ export default function WhatsAppCRM() {
         replyText={replyText}
         onReplyChange={setReplyText}
         onSendReply={() =>
-          handleSendReply(
-            replyText,
-            selectedContact,
-            messages,
-            setMessages,
-            setReplyText,
-            messagesEndRef
-          )
+          handleSendReply(replyText, selectedContact, setReplyText)
         }
         messagesEndRef={messagesEndRef}
       />

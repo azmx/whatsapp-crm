@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Send, MessageCircle, Video, Phone, Info, Smile, Paperclip, Mic } from "lucide-react";
+import {
+  Send,
+  MessageCircle,
+  Video,
+  Phone,
+  Info,
+  Smile,
+  Paperclip,
+  Mic,
+} from "lucide-react";
 import { formatTime } from "../utils/chatActions";
 
 export function ChatArea({
@@ -34,9 +43,12 @@ export function ChatArea({
             <div className="flex items-center gap-3">
               {/* Avatar */}
               <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white font-semibold backdrop-blur-sm">
-                {contacts.find((c) => c.phone === selectedContact)?.name.charAt(0).toUpperCase()}
+                {contacts
+                  .find((c) => c.phone === selectedContact)
+                  ?.name.charAt(0)
+                  .toUpperCase()}
               </div>
-              
+
               {/* Contact Info */}
               <div>
                 <p className="font-semibold text-white">
@@ -45,7 +57,7 @@ export function ChatArea({
                 <p className="text-xs text-white/80">{selectedContact}</p>
               </div>
             </div>
-            
+
             {/* Action Buttons */}
             <div className="flex gap-2">
               <button className="text-white/90 hover:text-white hover:bg-white/20 p-2 rounded-full transition-all duration-200">
@@ -82,10 +94,16 @@ export function ChatArea({
                         : "bubble-in-new"
                     }`}
                   >
-                    <p className="break-words text-sm leading-relaxed">{msg.text}</p>
-                    <p className={`text-[10px] text-right mt-1 ${
-                      msg.direction === "outgoing" ? "text-white/80" : "text-gray-500"
-                    }`}>
+                    <p className="break-words text-sm leading-relaxed">
+                      {msg.text}
+                    </p>
+                    <p
+                      className={`text-[10px] text-right mt-1 ${
+                        msg.direction === "outgoing"
+                          ? "text-white/80"
+                          : "text-gray-500"
+                      }`}
+                    >
                       {formatTime(msg.timestamp)}
                     </p>
                   </div>
@@ -104,7 +122,7 @@ export function ChatArea({
               <button className="text-gray-500 hover:text-gray-700 hover:bg-gray-200 p-2 rounded-full transition-all duration-200">
                 <Paperclip size={24} />
               </button>
-              
+
               <input
                 type="text"
                 value={replyText}
@@ -113,7 +131,7 @@ export function ChatArea({
                 placeholder="Ketik pesan..."
                 className="flex-1 px-5 py-3 bg-white border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-sm shadow-sm"
               />
-              
+
               {replyText.trim() ? (
                 <button
                   onClick={onSendReply}
@@ -135,8 +153,12 @@ export function ChatArea({
             <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full flex items-center justify-center shadow-2xl">
               <MessageCircle size={64} className="text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">WhatsApp CRM</h2>
-            <p className="text-gray-500">Pilih kontak untuk memulai percakapan</p>
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">
+              WhatsApp CRM
+            </h2>
+            <p className="text-gray-500">
+              Pilih kontak untuk memulai percakapan
+            </p>
           </div>
         </div>
       )}

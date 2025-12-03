@@ -1,26 +1,37 @@
-export function handleSendReply(
+export async function handleSendReply(
   replyText,
   selectedContact,
-  messages,
-  setMessages,
   setReplyText
 ) {
   if (!replyText.trim() || !selectedContact) return;
 
-  const newMessage = {
-    id: `msg-${Date.now()}`,
-    from: selectedContact,
-    text: replyText,
-    timestamp: new Date().toISOString(),
-    direction: "outgoing",
-  };
+  try {
+    const response = await fetch(
+      "https://whatsapp-webhook-vercel-two.vercel.app/api/send-message",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": import.meta.env.VITE_API_KEY_SECRET,
+        },
+        body: JSON.stringify({
+          to: selectedContact,
+          message: replyText,
+        }),
+      }
+    );
 
-  const updatedMessages = [...messages, newMessage];
+    if (!response.ok) {
+      alert("Gagal mengirim pesan");
+      return;
+    }
 
-  localStorage.setItem("whatsapp-messages", JSON.stringify(updatedMessages));
-
-  setMessages(updatedMessages);
-  setReplyText("");
+    setReplyText(""); // Clear input
+    console.log("✅ Pesan terkirim!");
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Terjadi kesalahan");
+  }
 }
 
 export function clearAllMessages(
